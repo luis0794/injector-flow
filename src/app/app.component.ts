@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 
+export interface Results {
+  a: number;
+  b: number;
+  c: number;
+  operatingTime: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,25 +18,25 @@ export class AppComponent {
   damageTwo: number;
   damageThree: number;
   speedLight: number;
-  resultA: number;
-  resultB: number;
-  resultC: number;
-  operatingTime: string;
+  results: Results[];
 
   constructor() {
     this.speedLight = 100;
     this.damageOne = 0;
     this.damageTwo = 0;
     this.damageThree = 0;
-    this.resultA = 100;
-    this.resultB = 100;
-    this.resultC = 100;
-    this.operatingTime = 'Infinito';
+    this.results = [
+      {
+        a: 100,
+        b: 100,
+        c: 100,
+        operatingTime: 'Infinito'
+      }
+    ];
   }
 
   calc(): void {
-    if (this.damageOne === 0) { this.resultA = 100; }
-    this.resultA = Number(this.resultA) - this.damageOne;
+    this.results[0].a = Number(this.results[0].a) - this.damageOne;
   }
 
 }
