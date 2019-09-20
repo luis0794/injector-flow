@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
-export interface Results {
-  a: number;
-  b: number;
-  c: number;
-  operatingTime: string;
+export interface Injector {
+  name: string;
+  actualCapacity: number;
+  extraCapacity: number;
+  damage: number;
+  operatingTime: number;
 }
 
 @Component({
@@ -13,30 +14,71 @@ export interface Results {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  damageOne: number;
-  damageTwo: number;
-  damageThree: number;
   speedLight: number;
-  results: Results[];
+  operatingTime: string;
+  injectors: Injector[];
 
   constructor() {
     this.speedLight = 100;
-    this.damageOne = 0;
-    this.damageTwo = 0;
-    this.damageThree = 0;
-    this.results = [
+    this.operatingTime = 'Infinito';
+
+    this.injectors = [
       {
-        a: 100,
-        b: 100,
-        c: 100,
-        operatingTime: 'Infinito'
+        name: 'Inyector A',
+        actualCapacity: 100,
+        extraCapacity: 0,
+        damage: 0,
+        operatingTime: 100
+      },
+      {
+        name: 'Inyector B',
+        actualCapacity: 100,
+        extraCapacity: 0,
+        damage: 0,
+        operatingTime: 100
+      },
+      {
+        name: 'Inyector C',
+        actualCapacity: 100,
+        extraCapacity: 0,
+        damage: 0,
+        operatingTime: 100
       }
     ];
   }
 
-  calc(): void {
-    this.results[0].a = Number(this.results[0].a) - this.damageOne;
+  calcA(): void {
+    this.calculateDefaultCapacity();
+    this.injectors[0].actualCapacity = this.injectors[0].damage === 100 ? 0 : 100 -  this.injectors[0].damage;
   }
+
+  calcB(): void {
+    this.calculateDefaultCapacity();
+    this.injectors[1].actualCapacity = this.injectors[1].damage === 100 ? 0 : 100 -  this.injectors[1].damage;
+  }
+
+  calcC(): void {
+    this.calculateDefaultCapacity();
+    this.injectors[2].actualCapacity = this.injectors[2].damage === 100 ? 0 : 100 -  this.injectors[2].damage;
+  }
+
+  calculateDefaultCapacity(): void {
+    if (this.injectors[0].damage === 0 && this.injectors[1].damage === 0 && this.injectors[2].damage === 0) {
+      this.injectors[0].actualCapacity = this.speedLight;
+      this.injectors[1].actualCapacity = this.speedLight;
+      this.injectors[2].actualCapacity = this.speedLight;
+    }
+  }
+
+  /*calculateOperatingTime(): string {
+    let operatingTimeResponse = 'Infinito';
+
+    if (this.injectors[0].damage + this.injectors[0].actualCapacity === 100 &&
+      this.injectors[1].damage + this.injectors[1].actualCapacity === 100 &&
+      this.injectors[2].damage + this.injectors[2].actualCapacity === 100) {
+      operatingTimeResponse = 'Infinito';
+    }
+    return operatingTimeResponse;
+  }*/
 
 }

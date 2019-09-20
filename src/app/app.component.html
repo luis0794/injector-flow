@@ -1,28 +1,36 @@
 <div class="p-grid" style="padding-left: 2%">
   <div class="p-col-1 p-offset-4">
-    <h5>Daño A: {{ damageOne }}%</h5>
+    <h5>Daño A: {{ injectors[0].damage }}%</h5>
   </div>
   <div class="p-col-1">
-    <h5>Daño B: {{ damageTwo }}%</h5>
+    <h5>Daño B: {{ injectors[1].damage }}%</h5>
   </div>
   <div class="p-col-1">
-    <h5>Daño C: {{ damageThree }}%</h5>
+    <h5>Daño C: {{ injectors[1].damage }}%</h5>
   </div>
 </div>
 
 <div class="p-grid" style="padding-left: 5%">
   <div class="p-col-1 p-offset-4">
     <p-slider
-      [(ngModel)]="damageOne"
+      [(ngModel)]="injectors[0].damage"
       [style]="{'height':'14em'}"
       orientation="vertical"
-      (onSlideEnd)="calc()"></p-slider>
+      (onChange)="calcA()"></p-slider>
   </div>
   <div class="p-col-1">
-    <p-slider [(ngModel)]="damageTwo" [style]="{'height':'14em'}" orientation="vertical"></p-slider>
+    <p-slider
+      [(ngModel)]="injectors[1].damage"
+      [style]="{'height':'14em'}"
+      orientation="vertical"
+      (onChange)="calcB()"></p-slider>
   </div>
   <div class="p-col-1">
-    <p-slider [(ngModel)]="damageThree" [style]="{'height':'14em'}" orientation="vertical"></p-slider>
+    <p-slider
+      [(ngModel)]="injectors[2].damage"
+      [style]="{'height':'14em'}"
+      orientation="vertical"
+      (onChange)="calcC()"></p-slider>
   </div>
 </div>
 
@@ -40,23 +48,23 @@
 
 <div class="p-grid" style="padding-top: 4%">
   <div class="p-col-5 p-offset-3">
-    <p-table [value]="results">
+    <p-table [value]="injectors">
       <ng-template pTemplate="header">
         <tr>
-          <th>A</th>
-          <th>B</th>
-          <th>C</th>
-          <th>Tiempo Funcionamiento</th>
+          <th>Nombre</th>
+          <th>Capacidad</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-rowData>
         <tr>
-          <td>{{rowData.a}}</td>
-          <td>{{rowData.b}}</td>
-          <td>{{rowData.c}}</td>
-          <td>{{rowData.operatingTime}}</td>
+          <td>{{rowData.name}}</td>
+          <td>{{rowData.actualCapacity}}</td>
         </tr>
       </ng-template>
     </p-table>
+
+    <div>
+      <h4>Tiempo Funcionamiento: {{ operatingTime }}</h4>
+    </div>
   </div>
 </div>
