@@ -16,7 +16,6 @@
       [(ngModel)]="damageOne"
       [style]="{'height':'14em'}"
       orientation="vertical"
-      (onChange)="calc()"
       (onSlideEnd)="calc()"></p-slider>
   </div>
   <div class="p-col-1">
@@ -41,23 +40,23 @@
 
 <div class="p-grid" style="padding-top: 4%">
   <div class="p-col-5 p-offset-3">
-    <table>
-      <thead>
-      <tr>
-        <th>A</th>
-        <th>B</th>
-        <th>C</th>
-        <th>Tiempo Funcionamiento</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>{{resultA}}</td>
-        <td>{{resultB}}</td>
-        <td>{{resultC}}</td>
-        <td>{{operatingTime}}</td>
-      </tr>
-      </tbody>
-    </table>
+    <p-table [value]="results">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>A</th>
+          <th>B</th>
+          <th>C</th>
+          <th>Tiempo Funcionamiento</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          <td>{{rowData.a}}</td>
+          <td>{{rowData.b}}</td>
+          <td>{{rowData.c}}</td>
+          <td>{{rowData.operatingTime}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 </div>
