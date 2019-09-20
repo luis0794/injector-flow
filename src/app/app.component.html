@@ -1,0 +1,63 @@
+<div class="p-grid" style="padding-left: 2%">
+  <div class="p-col-1 p-offset-4">
+    <h5>Daño A: {{ damageOne }}%</h5>
+  </div>
+  <div class="p-col-1">
+    <h5>Daño B: {{ damageTwo }}%</h5>
+  </div>
+  <div class="p-col-1">
+    <h5>Daño C: {{ damageThree }}%</h5>
+  </div>
+</div>
+
+<div class="p-grid" style="padding-left: 5%">
+  <div class="p-col-1 p-offset-4">
+    <p-slider
+      [(ngModel)]="damageOne"
+      [style]="{'height':'14em'}"
+      orientation="vertical"
+      (onChange)="calc()"
+      (onSlideEnd)="calc()"></p-slider>
+  </div>
+  <div class="p-col-1">
+    <p-slider [(ngModel)]="damageTwo" [style]="{'height':'14em'}" orientation="vertical"></p-slider>
+  </div>
+  <div class="p-col-1">
+    <p-slider [(ngModel)]="damageThree" [style]="{'height':'14em'}" orientation="vertical"></p-slider>
+  </div>
+</div>
+
+<div class="p-grid" style="padding-top: 2%; padding-left: 5%">
+  <div class="p-col-2 p-offset-4" style="padding-left: 3%">
+    <h4>Velocidad de la luz: {{ speedLight }}%</h4>
+  </div>
+</div>
+
+<div class="p-grid" style="padding-left: 5%;">
+  <div class="p-col-2 p-offset-4">
+    <p-slider [(ngModel)]="speedLight"></p-slider>
+  </div>
+</div>
+
+<div class="p-grid" style="padding-top: 4%">
+  <div class="p-col-5 p-offset-3">
+    <table>
+      <thead>
+      <tr>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>Tiempo Funcionamiento</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{resultA}}</td>
+        <td>{{resultB}}</td>
+        <td>{{resultC}}</td>
+        <td>{{operatingTime}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
